@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,55 +12,58 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CLIENTE")
+@Table(name = "cliente")
 public class Cliente {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private Integer id;
 
-    @Column(name = "nome", length = 100)
-    private String nome;
-    
-    @OneToMany(mappedBy = "cliente")
-    
-    private Set<Pedido> pedido;
+	@Column(name = "nome", length = 100)
+	private String nome;
 
-    public Cliente() {
-    }
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+	private Set<Pedido> pedidos;
 
-    public Cliente(Integer id, String nome) {
-        this.id = id;
-        this.nome = nome;
-    }
+	public Cliente() {
+	}
 
-    public Cliente(String nome) {
-        this.nome = nome;
-    }
+	public Set<Pedido> getPedidos() {
+		return pedidos;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public void setPedidos(Set<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public Cliente(Integer id, String nome) {
+		this.id = id;
+		this.nome = nome;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public Cliente(String nome) {
+		this.nome = nome;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                '}';
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	@Override
+	public String toString() {
+		return "Cliente{" + "id=" + id + ", nome='" + nome + '\'' + '}';
+	}
 }
