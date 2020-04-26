@@ -1,4 +1,4 @@
-package com.mc.zero.repositorio;
+package com.mc.zero.repository;
 
 import java.util.List;
 

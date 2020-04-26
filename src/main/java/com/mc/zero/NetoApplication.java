@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.mc.zero.entity.Cliente;
-import com.mc.zero.repositorio.Clientes;
+import com.mc.zero.repository.Clientes;
 
 @SpringBootApplication
 public class NetoApplication  {
