@@ -11,17 +11,15 @@ import com.mc.zero.repository.Clientes;
 
 @SpringBootApplication
 public class NetoApplication  {
-
-
-    @Bean
-    public CommandLineRunner init(@Autowired Clientes clientes){
-        return args -> {
-            System.out.println("Salvando clientes");
-            clientes.save(new Cliente("Fulano"));
-            clientes.save(new Cliente("Outro Cliente"));
-
-        };
-    }
+	
+	@Bean
+	public CommandLineRunner commandLineRunner(@Autowired Clientes clientes) {
+		return args ->{
+			Cliente c = new Cliente(null, "Manoel");
+			clientes.save(c);
+		};
+		
+	}
 
     public static void main(String[] args) {
         SpringApplication.run(NetoApplication.class, args);
